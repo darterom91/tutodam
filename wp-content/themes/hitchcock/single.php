@@ -2,39 +2,41 @@
 
 <div class="content section-inner">
 											        
-	<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
+	<?php if ( have_posts() ) : while( have_posts() ) : the_post(); ?>
 		
-		<div id="post-<?php the_ID(); ?>" <?php post_class('single single-post'); ?>>
+		<div id="post-<?php the_ID(); ?>" <?php post_class( 'single single-post' ); ?>>
 			
 			<div class="post-container">
 				
-				<?php $post_format = get_post_format(); ?>
+				<?php 
 				
-				<?php if ( $post_format == 'gallery' ) : ?>
+				$post_format = get_post_format();
+
+				if ( $post_format == 'gallery' ) : ?>
 				
 					<div class="featured-media">	
 		
-						<?php hitchcock_flexslider('post-image'); ?>
+						<?php hitchcock_flexslider( 'post-image' ); ?>
 						
 						<div class="clear"></div>
 						
-					</div> <!-- /featured-media -->
+					</div><!-- .featured-media -->
 					
 				<?php elseif ( has_post_thumbnail() ) : ?>
 						
 					<div class="featured-media">
 			
-						<?php the_post_thumbnail('post-image'); ?>
+						<?php the_post_thumbnail( 'post-image' ); ?>
 						
-					</div> <!-- /featured-media -->
+					</div><!-- .featured-media -->
 						
 				<?php endif; ?>
 				
 				<div class="post-header">
 					
-					<p class="post-date"><?php the_time(get_option('date_format')); ?></p>
+					<p class="post-date"><?php the_time( get_option( 'date_format' ) ); ?></p>
 					
-					<h1 class="post-title"><?php the_title(); ?></h1>
+					<?php the_title( '<h1 class="post-title">', '</h1>' ); ?>
 					
 				</div>
 				
@@ -44,89 +46,89 @@
 				    
 				    	<?php the_content(); ?>
 				    
-				    </div> <!-- /post-content -->
+				    </div><!-- .post-content -->
 				    
 				    <div class="clear"></div>
 				    
 				    <?php 
-				    	$args = array(
-							'before'           => '<div class="page-links"><span class="title">' . __( 'Pages:','hitchcock' ) . '</span>',
-							'after'            => '<div class="clear"></div></div>',
-							'link_before'      => '<span>',
-							'link_after'       => '</span>',
-							'separator'        => '',
-							'pagelink'         => '%',
-							'echo'             => 1
-						);
-			    	
-			    		wp_link_pages($args); 
+					$args = array(
+						'before'           => '<div class="page-links"><span class="title">' . __( 'Pages:', 'hitchcock' ) . '</span>',
+						'after'            => '<div class="clear"></div></div>',
+						'link_before'      => '<span>',
+						'link_after'       => '</span>',
+						'separator'        => '',
+						'pagelink'         => '%',
+						'echo'             => 1
+					);
+				
+					wp_link_pages( $args );
 					?>
 					
 					<div class="post-meta">
 				
-						<?php if (has_category()) : ?>
+						<?php if ( has_category() ) : ?>
 							<p class="categories">
-								<?php _e('In','hitchcock'); ?> <?php the_category(', '); ?>
-							</p>
-						<?php endif; ?>
-						<?php if (has_tag()) : ?>
-							<p class="tags">
-								<?php the_tags('', ' '); ?>
+								<?php _e( 'In', 'hitchcock' ); ?> <?php the_category( ', ' ); ?>
 							</p>
 						<?php endif; ?>
 						
-						<?php edit_post_link('Edit Post', '<p class="post-edit">', '</p>'); ?>
+						<?php if ( has_tag() ) : ?>
+							<p class="tags">
+								<?php the_tags( '', ' ' ); ?>
+							</p>
+						<?php endif; ?>
+						
+						<?php edit_post_link( 'Edit Post', '<p class="post-edit">', '</p>' ); ?>
 	
-					</div> <!-- /post-meta -->
-					
-					<?php
-						$prev_post = get_previous_post();
-						$next_post = get_next_post();
-					?>
+					</div><!-- .post-meta -->
 					
 					<div class="post-navigation">
 						
 						<?php
-						if (!empty( $prev_post )): ?>
+						$prev_post = get_previous_post();
+						$next_post = get_next_post();
+
+						if ( ! empty( $prev_post ) ) : ?>
 							
-							<a class="post-nav-prev" title="<?php echo esc_attr( get_the_title($prev_post) ); ?>" href="<?php echo get_permalink( $prev_post->ID ); ?>">					
-								<p><?php _e('Next','hitchcock'); ?><span class="hide"> <?php _e('Post','hitchcock'); ?></span></p>
+							<a class="post-nav-prev" title="<?php echo esc_attr( get_the_title( $prev_post->ID ) ); ?>" href="<?php echo get_permalink( $prev_post->ID ); ?>">					
+								<p><?php _e( 'Next', 'hitchcock' ); ?><span class="hide"> <?php _e( 'Post', 'hitchcock' ); ?></span></p>
 								<span class="fa fw fa-angle-right"></span>
 							</a>
 					
-						<?php endif; ?>
-					
-						<?php
-						if (!empty( $next_post )): ?>
+						<?php endif;
 						
-							<a class="post-nav-next" title="<?php echo esc_attr( get_the_title($next_post) ); ?>" href="<?php echo get_permalink( $next_post->ID ); ?>">
+						if ( ! empty( $next_post ) ) : ?>
+						
+							<a class="post-nav-next" title="<?php echo esc_attr( get_the_title( $next_post->ID ) ); ?>" href="<?php echo get_permalink( $next_post->ID ); ?>">
 								<span class="fa fw fa-angle-left"></span>
-								<p><?php _e('Previous','hitchcock'); ?><span class="hide"> <?php _e('Post','hitchcock'); ?></span></p>
+								<p><?php _e( 'Previous', 'hitchcock' ); ?><span class="hide"> <?php _e( 'Post', 'hitchcock' ); ?></span></p>
 							</a>
 						<?php endif; ?>
 						
 						<div class="clear"></div>
 					
-					</div> <!-- /post-navigation -->
+					</div><!-- .post-navigation -->
 				
-				</div> <!-- /post-inner -->
+				</div><!-- .post-inner -->
 				
 				<?php comments_template( '', true ); ?>
 			
-			</div> <!-- /post-container -->
+			</div><!-- .post-container -->
 			
-		</div> <!-- /post -->
+		</div><!-- .post -->
 		
-	</div> <!-- /content -->
+	</div><!-- .content -->
 	
-	<?php hitchcock_related_posts(); ?>
+	<?php hitchcock_related_posts( 3 ); ?>
 		
-   	<?php endwhile; else: ?>
+	<?php 
+	endwhile; 
+	else: ?>
 
-		<p><?php _e("We couldn't find any posts that matched your query. Please try again.", "hitchcock"); ?></p>
+		<p><?php _e( "We couldn't find any posts that matched your query. Please try again.", "hitchcock" ); ?></p>
 	
 	<?php endif; ?>    
 
-</div> <!-- /content -->
+</div><!-- .content -->
 		
 <?php get_footer(); ?>

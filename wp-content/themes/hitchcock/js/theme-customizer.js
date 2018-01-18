@@ -6,12 +6,23 @@
  */
 ( function( $ ) {
 
-	//Update site accent color in real time...
+	// Update site accent color in real time...
 	wp.customize( 'accent_color', function( value ) {
 		value.bind( function( newval ) {
 			$('.blog-title a:hover').css('color', newval );
 			$('.social-menu a:hover').css('background-color', newval );
 			$('.archive-nav a:hover').css('color', newval );
+		} );
+	} );
+
+	// Show preview titles
+	wp.customize( 'hitchcock_show_titles', function( value ) {
+		value.bind( function( newval ) {
+			if ( newval == true ) {
+				$( 'body' ).addClass( 'show-preview-titles' );
+			} else {
+				$( 'body' ).removeClass( 'show-preview-titles' );
+			}
 		} );
 	} );
 	

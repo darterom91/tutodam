@@ -6,7 +6,7 @@
 	
 		<div class="page-title">
 		
-			<p><?php _e( 'Search Results', 'hitchcock'); ?></p>
+			<p><?php _e( 'Search Results', 'hitchcock' ); ?></p>
 			
 			<h4><?php echo ' "' . get_search_query() . '"'; ?></h4>
 			
@@ -14,28 +14,30 @@
 				
 		<div class="posts" id="posts">
 				
-	    	<?php while (have_posts()) : the_post(); ?>
+			<?php 
+			while( have_posts() ) : the_post();
 	    	
-	    		<?php get_template_part( 'content', get_post_format() ); ?>
+	    		get_template_part( 'content', get_post_format() );
 	    		
-	        <?php endwhile; ?>
+			endwhile; 
+			?>
             
             <div class="clear"></div>
 				
-		</div> <!-- /posts -->
+		</div><!-- .posts -->
 	
 		<div class="clear"></div>
 		
-		<?php hitchcock_archive_navigation(); ?>
-
-	<?php else : ?>
+		<?php hitchcock_archive_navigation();
+		
+	else : ?>
 					
 		<div class="page-title">
 	
-			<p><?php _e( 'Search Results', 'hitchcock'); ?></p>
+			<p><?php _e( 'Search Results', 'hitchcock' ); ?></p>
 			<h4><?php echo ' "' . get_search_query() . '"'; ?></h4>
 			
-		</div> <!-- /page-title -->
+		</div><!-- .page-title -->
 					
 		<div class="post single">
 			
@@ -45,20 +47,20 @@
 			
 					<div class="post-content">
 					
-						<p><?php _e('No results. Try again, would you kindly?', 'hitchcock'); ?></p>
+						<p><?php _e( 'No results. Try again, would you kindly?', 'hitchcock' ); ?></p>
 						
 						<?php get_search_form(); ?>
 					
-					</div> <!-- /post-content -->
+					</div><!-- .post-content -->
 				
-				</div> <!-- /post-inner -->
+				</div><!-- .post-inner -->
 			
-			</div> <!-- /post-container -->
+			</div><!-- .post-container -->
 		
-		</div> <!-- /post -->
+		</div><!-- .post -->
 	
 	<?php endif; ?>	
 		
-</div> <!-- /content -->
+</div><!-- .content -->
 		
 <?php get_footer(); ?>

@@ -4,11 +4,11 @@
 
 	Theme Name: Hitchcock
     Text Domain: hitchcock
-    Version: 1.06
+    Version: 1.10
 	Author: Anders Norén
 	Author URI: http://www.andersnoren.se
     Theme URI: http://www.andersnoren.se/teman/hitchcock-wordpress-theme/
-	Description: Hitchcock is a minimal portfolio theme for designers, photographers and other creatives. It features a beautiful responsive design, a social icon menu, Jetpack infinite scroll, custom accent color, custom header image, support for the gallery post format, editor styling and much more. Included translations: Swedish/svenska.
+	Description: Hitchcock is a minimal portfolio theme for designers, photographers and other creatives. It features a beautiful responsive design, a social icon menu, Jetpack infinite scroll, custom accent color, custom header image, support for the gallery post format, the option to always show post preview titles, editor styling and much more. Demo: http://www.andersnoren.se/themes/hitchcock/
     Tags: blog, three-columns, custom-colors, custom-header, custom-menu, editor-style, featured-images, post-formats, sticky-post, theme-options, threaded-comments, translation-ready, grid-layout, portfolio, photography
 	License: GNU General Public License version 2.0
 	License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -630,37 +630,64 @@ input[type="button"],
 }
 
 .archive-post-title {
-	font-size: 1.375em;
-	line-height: 120%;
-	font-weight: 700;
-	text-transform: uppercase;
 	color: #222;
+	font-size: 1.375em;
+	font-weight: 700;
+	line-height: 120%;
+	text-transform: uppercase;
+		-ms-word-break: break-word;
 	word-break: break-word;
-	-ms-word-break: break-word;
 }
 
 .archive-post-date {
-	margin-bottom: 5px;
-	font-size: 0.875em;
 	color: #999;
+	font-size: 0.875em;
+	letter-spacing: .015em;
+	margin-bottom: 5px;
 	text-transform: uppercase;
 }
 
-.post:hover .post-overlay { opacity: 1; }
-.post:hover .archive-post-title { color: #3bc492; }
+.has-post-thumbnail .archive-post-date {
+	color: rgba( 255, 255, 255, 0.5 );
+}
+
+.post:hover > .post-overlay,
+.show-preview-titles .post > .post-overlay {
+	opacity: 1; 
+}
+
+.post:hover > .archive-post-title { 
+	color: #3bc492; 
+}
+
+.post.has-post-thumbnail:hover .archive-post-title,
+.show-preview-titles .post.has-post-thumbnail .archive-post-title { 
+	color: #fff; 
+}
 
 /* With Background Image */
 
 .has-post-thumbnail .post-overlay { 
-	background: rgba(0,0,0,0.75);
+	background: rgba( 0, 0, 0, 0.75 );
 	opacity: 0; 
 }
 
-.has-post-thumbnail .archive-post-header { bottom: 35px; }
-.has-post-thumbnail:hover .archive-post-header { bottom: 30px; }
+.show-preview-titles .has-post-thumbnail .post-overlay {
+	background: rgba( 0, 0, 0, 0.6 );
+}
 
-.has-post-thumbnail .archive-post-title,
-.post.has-post-thumbnail:hover .archive-post-title { color: #fff; }
+.has-post-thumbnail .archive-post-header { 
+	bottom: 35px; 
+}
+
+.has-post-thumbnail:hover .archive-post-header,
+.show-preview-titles .has-post-thumbnail .archive-post-header { 
+	bottom: 30px; 
+}
+
+.posts a.post.has-post-thumbnail { 
+	color: #fff; 
+}
 
 
 /* -------------------------------------------------------------------------------- */
@@ -1819,10 +1846,17 @@ p.comment-form-author { margin-right: 5%; }
 	color: #666;
 }
 
-.credits p + p a { color: #666; }
-.credits p + p a:hover { text-decoration: underline; }
+.credits p + p a { 
+	color: #666; 
+}
 
-img#wpstats { display: none; }
+.credits p + p a:hover {
+	opacity: 0.5;
+}
+
+img#wpstats { 
+	display: none; 
+}
 
 
 /* -------------------------------------------------------------------------------- */
@@ -2220,8 +2254,6 @@ img#wpstats { display: none; }
 	
 	/* Pagination --------------------------------------- */	
 	
-	
-	.page-title p { font-size:  }
 	
 	.page-title h4 { font-size: 1.25em; }
 	
